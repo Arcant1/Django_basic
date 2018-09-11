@@ -1,5 +1,8 @@
 {% extends "base_generic.html" %}
 {% block content %}
+<title>
+    INDEX
+</title>
 <h1> Biblioteca Local </h1>
     <p>Bienvenido a <em>Biblioteca Local</em>, </p>
 <h2>Contenido dinámico</h2>
@@ -9,5 +12,7 @@
         <li><strong>Copias totales:</strong>{{num_instancias}}</li>
         <li><strong>Copias disponibles</strong>{{num_instancias_disponibles}}</li>
         <li><strong>Autores:</strong>{{num_autores}}</li>
+        <li><strong>Cantidad de generos:</strong>{{num_generos}}</li>
+        <li><strong>Cantidad de libros de Darya:</strong>{{num_libros_darya}}</li>
     </ul>
 {% endblock %}
