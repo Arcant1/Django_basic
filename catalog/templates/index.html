@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1> Biblioteca Local </h1>
+    <p>Bienvenido a <em>Biblioteca Local</em>, </p>
+<h2>Contenido dinámico</h2>
+    <p>La biblioteca posee los siguientes registros</p>
+    <ul>
+        <li><strong>Libros:</strong>{{num_libros}}</li>
+        <li><strong>Copias totales:</strong>{{num_instancias}}</li>
+        <li><strong>Copias disponibles</strong>{{num_instancias_disponibles}}</li>
+        <li><strong>Autores:</strong>{{num_autores}}</li>
+    </ul>
+{% endblock %}
