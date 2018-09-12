@@ -28,7 +28,7 @@ def index(request):
 
 class LibroListView(generic.ListView):
     model = Libro
-    paginate_by = 10
+    paginate_by = 5
 
     #def get_queryset(self):
     #    return Libro.objects.filter(titulo__icontains='de')[:5]
@@ -40,3 +40,10 @@ class LibroListView(generic.ListView):
 
 class LibroDetailView(generic.DetailView):
     model = Libro
+
+class AutorListView(generic.ListView):
+    model = Autor
+    paginate_by = 3
+
+class AutorDetailView(generic.DetailView):
+    model = Autor

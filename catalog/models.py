@@ -87,7 +87,7 @@ class Autor(models.Model):
 
 	def get_absolute_url(self):
 		#	Devuelve la url para acceder a una instancia particular de un auto
-		return reverse('detalle-autor', args=[str(self.id)])
+		return reverse('autor-detail', args=[str(self.id)])
 
 	def __str__(self):
 		#	String para representar el objeto modelo

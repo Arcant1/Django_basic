@@ -8,5 +8,8 @@ from . import views
 urlpatterns = [
     url(r'^$',views.index, name='index'),
     url(r'^libros/$', views.LibroListView.as_view(), name='libros'),
-    url(r'^libro/(?P<pk>\d+)$', views.LibroDetailView.as_view(), name='libro-detail')
+    url(r'^libro/(?P<pk>\d+)$', views.LibroDetailView.as_view(), name='libro-detail'),
+    url(r'^autores/$', views.AutorListView.as_view(), name='autores'),
+    url(r'^autor/(?P<pk>\d+)$', views.AutorDetailView.as_view(), name='autor-detail'),
+
 ]
