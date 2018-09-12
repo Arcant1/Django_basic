@@ -16,7 +16,7 @@ class Idioma(models.Model):
 		('eng','English'),
 		('esp','Esperanto')
 	)
-	leng = models.CharField(max_length=3, choices=LISTA_LENGUAJES, blank=True, default='esp', help_text="Lenguaje del libro")
+	leng = models.CharField(max_length=15, choices=LISTA_LENGUAJES, blank=True, default='esp', help_text="Lenguaje del libro")
 
 	def __str__(self):
 		return '%s' %(self.leng)
@@ -77,10 +77,6 @@ class	Instancia(models.Model):
 	def __str__(self):
 		#	String para representar el objeto del modelo
 		return '%s (%s)' %(self.id, self.libro.titulo)
-	
-	#def get_status_display(self):
-	#	return '%s' %self.estado
-
 
 class Autor(models.Model):
 	#	Modelo que representa un autor

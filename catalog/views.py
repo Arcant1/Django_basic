@@ -28,6 +28,7 @@ def index(request):
 
 class LibroListView(generic.ListView):
     model = Libro
+    paginate_by = 10
 
     #def get_queryset(self):
     #    return Libro.objects.filter(titulo__icontains='de')[:5]
