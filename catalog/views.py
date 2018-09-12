@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Libro, Autor, Instancia, Genero
+from django.views import generic
 
 # Create your views here.
 
@@ -24,3 +25,17 @@ def index(request):
             'num_libros_darya':num_libros_darya,
             },
     )
+
+class LibroListView(generic.ListView):
+    model = Libro
+
+    #def get_queryset(self):
+    #    return Libro.objects.filter(titulo__icontains='de')[:5]
+
+    def get_context_data(self, **kwargs):
+        context = super(LibroListView, self).get_context_data(**kwargs)
+        context['some data'] = 'Esto son solo datos'
+        return context
+
+class LibroDetailView(generic.DetailView):
+    model = Libro

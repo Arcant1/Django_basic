@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Título: {{libro.titulo}}</h1>
+
+<p><strong>Autor:</strong><a href="{{libro.autor}}"></a></p> <!--Todavía no defini el link al autor-->
+<p><strong>Descripción:</strong>{{libro.descripción}}</p>
+<p><strong>ISBN:</strong>{{libro.isbn}}</p>
+<p><strong>Idioma:</strong>{{libro.lenguaje}}</p>
+
+<p><strong>Genero:</strong>
+    {% for gen in libro.genero.all %}
+    {{gen}}
+    {% if not forloop.last %},
+    {% endif %}{% endfor %}
+</p> 
+
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Copias</h4>
+    {% for copia in libro.instancia_set.all %}
+        <hr>
+        <p class=" { % if copia.estado == 'a' % }text-success{ % elif copia.estado == 'm' % }text-danger{ % else % }text-warning{ % endif % }">{{copia.get_estado_display}}</p> <!--RE LOCO-->
+        {% if copia.estado != 'a' %}
+            <p><strong>Debe ser devuelto: </strong> {{copia.fecha_en}}</p>
+        {% endif %}
+        <p><strong>Imprint:</strong>{{copia.imprint}}</p>
+        <p class="text-muted"><strong>Id:</strong>{{copia.id}}</p>
+    {% endfor %}
+</div>
+{% endblock %}

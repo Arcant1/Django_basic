@@ -23,7 +23,7 @@ class Idioma(models.Model):
 
 class Libro(models.Model):
 	"""
-	Model representing a book (but not a specific copy of a book).
+	Modelo que representa un libro, pero no una instancia de dicho libro
 	"""
 	titulo = models.CharField(max_length=200)
 	autor = models.ForeignKey('Autor', on_delete=models.SET_NULL, null=True)
@@ -32,10 +32,10 @@ class Libro(models.Model):
 	descripcion = models.TextField(max_length=1000, help_text="Enter a brief description of the book",default="Sin descripción")
 	isbn = models.CharField('ISBN',max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
 	genero = models.ManyToManyField(Genero, help_text="Select a genre for this book")
-	lenguaje =   models.ManyToManyField(Idioma, help_text="Seleccione un idioma para el libro")
+	lenguaje = models.ForeignKey('Idioma', on_delete=models.SET_NULL, null=True)
 	  # ManyToManyField used because a genre can contain many books and a Book can cover many genres.
 	  # Genre class has already been defined so we can specify the object above.
-	#language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+	
 	  
 	def display_genre(self):
 		"""
@@ -49,7 +49,7 @@ class Libro(models.Model):
 		"""
 		Returns the url to access a particular book instance.
 		"""
-		return reverse('book-detail', args=[str(self.id)])
+		return reverse('libro-detail', args=[str(self.id)])
 
 	def __str__(self):
 		"""
@@ -77,6 +77,9 @@ class	Instancia(models.Model):
 	def __str__(self):
 		#	String para representar el objeto del modelo
 		return '%s (%s)' %(self.id, self.libro.titulo)
+	
+	#def get_status_display(self):
+	#	return '%s' %self.estado
 
 
 class Autor(models.Model):

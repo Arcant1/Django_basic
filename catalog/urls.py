@@ -7,4 +7,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$',views.index, name='index'),
+    url(r'^libros/$', views.LibroListView.as_view(), name='libros'),
+    url(r'^libro/(?P<pk>\d+)$', views.LibroDetailView.as_view(), name='libro-detail')
 ]
