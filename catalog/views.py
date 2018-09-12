@@ -7,6 +7,13 @@ from django.views import generic
 def index(request):
     #Función VISTA para la página de inicio del sitio
     #Genera contadores de algunos de los objetos principales
+
+    #Contador de visitas
+
+    num_visitas = request.session.get('num_visitas',0)
+    request.session['num_visitas'] = num_visitas+1
+
+    #Parte de la biblioteca
     num_libros = Libro.objects.all().count()
     num_instancias= Instancia.objects.all().count()
     num_instancias_disponibles=Instancia.objects.filter(estado__exact='a').count() #WARDA
@@ -23,6 +30,7 @@ def index(request):
             'num_autores':num_autores,
             'num_generos':num_generos,
             'num_libros_darya':num_libros_darya,
+            'num_visitas':num_visitas #agregado
             },
     )
 
