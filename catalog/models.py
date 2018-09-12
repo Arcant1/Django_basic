@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 import uuid					#	Se requiere para las instancias de libros únicos
+from django.contrib.auth.models import User
+from datetime import date
 
 class Genero(models.Model):	#	Modelo que representa un género literario
 		  
@@ -64,6 +66,7 @@ class	Instancia(models.Model):
 	libro	=	models.ForeignKey('Libro', on_delete=models.SET_NULL, null=True)
 	imprint	=	models.CharField(max_length=200)
 	fecha_en=	models.DateField(null=True, blank=True)
+	usuario	=	models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 	ESTADO_PRESTAMO	=	(
 		('m','Mantenimiento'),
 		('o','En prestamo'),
@@ -77,6 +80,12 @@ class	Instancia(models.Model):
 	def __str__(self):
 		#	String para representar el objeto del modelo
 		return '%s (%s)' %(self.id, self.libro.titulo)
+	
+	@property
+	def is_overdue(self):
+		if self.fecha_en and date.today() > self.fecha_en :
+			return True
+		return False
 
 class Autor(models.Model):
 	#	Modelo que representa un autor

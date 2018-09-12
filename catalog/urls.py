@@ -13,3 +13,6 @@ urlpatterns = [
     url(r'^autor/(?P<pk>\d+)$', views.AutorDetailView.as_view(), name='autor-detail'),
 
 ]
+urlpatterns += [   
+    url(r'^mislibros/$', views.LibrosPrestadosPorUsuarioListView.as_view(), name='mis-prestamos'),
+]

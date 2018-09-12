@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Libros prestados</h1>
+
+    {% if instancia_list %}
+    <ul>
+
+      {% for instancia in instancia_list %} 
+      <li class="{% if instancia.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'libro-detail' instancia.libro.pk %}">{{instancia.libro.titulo}}</a> ({{ instancia.fecha_en }})        
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no books borrowed.</p>
+    {% endif %}       
+{% endblock %}

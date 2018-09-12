@@ -32,12 +32,12 @@ class LibroAdmin(admin.ModelAdmin):
 @admin.register(Instancia)
 class InstanciaAdmin(admin.ModelAdmin):
 	list_filter=('estado','fecha_en')
-	list_display=('libro','estado','fecha_en','id')
+	list_display=('libro','estado','usuario','fecha_en','id')
 	fieldsets=(
 		(None,{
 			'fields':('libro','imprint','id')
 		}),
 		('Disponibilidad',{
-			'fields':('estado','fecha_en')
+			'fields':('estado','fecha_en','usuario')
 		}),
 	)

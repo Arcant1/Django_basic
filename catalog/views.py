@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Libro, Autor, Instancia, Genero
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -55,3 +56,15 @@ class AutorListView(generic.ListView):
 
 class AutorDetailView(generic.DetailView):
     model = Autor
+
+class LibrosPrestadosPorUsuarioListView(LoginRequiredMixin,generic.ListView):
+    """
+    Vista genérica basada en clases para listar los libros en préstamo al usuario actual
+    """
+    model = Instancia
+    template_name = 'catalog/lista_instancia_prestadas_user.html'
+    paginate_by = 1
+
+    def get_queryset(self):
+        return Instancia.objects.filter(usuario=self.request.user).filter(estado__exact='o').order_by('fecha_en')
+
