@@ -16,3 +16,7 @@ urlpatterns = [
 urlpatterns += [   
     url(r'^mislibros/$', views.LibrosPrestadosPorUsuarioListView.as_view(), name='mis-prestamos'),
 ]
+
+urlpatterns += [   
+    url(r'^libro/(?P<pk>[-\w]+)/renovar/$', views.renovar_libro_librarian, name='renovar-libro-librarian'),
+]

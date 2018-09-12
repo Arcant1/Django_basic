@@ -76,6 +76,7 @@ class	Instancia(models.Model):
 	estado = models.CharField(max_length=1, choices=ESTADO_PRESTAMO, blank=True, default='m', help_text="Estado de disponibilidad del libro")
 	class Meta:
 		ordering = ["fecha_en"]
+		permissions = (("puede_marcar_retornado", "Setea la instancia como devuelta"),)
 	
 	def __str__(self):
 		#	String para representar el objeto del modelo

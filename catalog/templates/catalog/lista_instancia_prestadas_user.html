@@ -10,6 +10,8 @@
       <li class="{% if instancia.is_overdue %}text-danger{% endif %}">
         <a href="{% url 'libro-detail' instancia.libro.pk %}">{{instancia.libro.titulo}}</a> ({{ instancia.fecha_en }})        
       </li>
+      {% if perms.catalog.puede_marcar_retornado %} <a href="{% url 'renovar-libro-librarian' instancia.id %}">Renovar</a>  {% endif %}
+
       {% endfor %}
     </ul>
 
