@@ -14,14 +14,14 @@ class Genero(models.Model):	#	Modelo que representa un género literario
 
 class Idioma(models.Model):
 	LISTA_LENGUAJES = (
-		('esp','Español'),
+		('spa','Español'),
 		('eng','English'),
 		('esp','Esperanto')
 	)
-	leng = models.CharField(max_length=15, choices=LISTA_LENGUAJES, blank=True, default='esp', help_text="Lenguaje del libro")
+	leng = models.CharField(max_length=15, choices=LISTA_LENGUAJES, blank=True, default='spa', help_text="Lenguaje del libro")
 
 	def __str__(self):
-		return '%s' %(self.leng)
+		return '%s' %(self.get_leng_display()) #AL FIN
 
 class Libro(models.Model):
 	"""
@@ -57,7 +57,7 @@ class Libro(models.Model):
 		"""
 		String for representing the Model object.
 		"""
-		return self.titulo
+		return '%s' %(self.titulo)
 		
 
 class	Instancia(models.Model):

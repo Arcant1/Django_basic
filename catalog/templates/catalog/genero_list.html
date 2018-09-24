@@ -8,6 +8,14 @@
       {% for genero in genero_list %}
       <li>
         {{genero}}
+        {% for libro in genero.libro_set.all %}
+        <p>
+            <strong><a href="{{ libro.get_absolute_url }}">{{libro.titulo}}</a> </strong>({{libro.instancia_set.all.count}})
+            <br>
+            {{libro.descripcion}}
+        </p>
+        
+        {% endfor %}
       </li>
       {% endfor %}
 
