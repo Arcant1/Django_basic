@@ -20,3 +20,7 @@ urlpatterns += [
 urlpatterns += [   
     url(r'^libro/(?P<pk>[-\w]+)/renovar/$', views.renovar_libro_librarian, name='renovar-libro-librarian'),
 ]
+
+urlpatterns += [
+    url(r'^generos/$',views.GeneroListView.as_view(),name='generos')
+]

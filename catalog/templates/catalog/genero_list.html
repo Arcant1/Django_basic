@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h1>Lista de Generos</h1>
+
+    {% if genero_list %}
+    <ul>
+
+      {% for genero in genero_list %}
+      <li>
+        {{genero}}
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay Géneros</p>
+    {% endif %}       
+{% endblock %}

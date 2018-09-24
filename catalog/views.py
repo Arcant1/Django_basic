@@ -3,6 +3,7 @@ from .models import Libro, Autor, Instancia, Genero
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 # Create your views here.
 
 def index(request):
@@ -47,6 +48,9 @@ class LibroListView(generic.ListView):
         context['some data'] = 'Esto son solo datos'
         return context
 
+class GeneroListView(generic.ListView):
+    model = Genero
+
 class LibroDetailView(generic.DetailView):
     model = Libro
 
@@ -82,6 +86,7 @@ def renovar_libro_librarian(request, pk):
     """
     View function for renewing a specific BookInstance by librarian
     """
+    
     book_inst=get_object_or_404(Instancia, pk = pk)
 
     # If this is a POST request then process the Form data
